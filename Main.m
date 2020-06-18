@@ -1,3 +1,5 @@
+%%%%% NOTE: I FOUND A CALCULATION ERROR AFTER SUBMITTING THE ASSIGNMENT. EFFICENCY DECRASED BY ~0.01 ACROSS THE BOARD
+
 clc; clear; close all;
 
 global superheated_10;
@@ -62,10 +64,10 @@ for x = 500:5:750 %From 227 to 600 degC
         Work_in_1_2 = mass_flow_rate * ( ( p2(l_enthalpy) - p1(l_enthalpy) ) * 55.509);
         Heat_in_3_4 = power_in_modified;
         Work_out_4_5 = mass_flow_rate * ( (p5_real_enthalpy - p4(g_enthalpy) ) * 55.509);
-        Work_out_5_7 = mass_flow_rate * ( (p7_real_enthalpy - p5_real_enthalpy ) * 55.509);
+        Work_out_5_7 = mass_flow_rate * (1 - mass_fraction) * ( (p7_real_enthalpy - p5_real_enthalpy ) * 55.509);
         
         Net_work = -(Work_in_1_2 + Work_out_4_5 + Work_out_5_7);
-        efficency =  Net_work / Heat_in_3_4  ;
+        efficency =  Net_work / Heat_in_3_4 ;
         
         matrix(count) = efficency;
         count = count + 1;
